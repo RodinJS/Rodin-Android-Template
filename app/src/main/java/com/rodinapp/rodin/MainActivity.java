@@ -1,5 +1,6 @@
 package com.rodinapp.rodin;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.support.v7.app.AppCompatActivity;
@@ -10,7 +11,7 @@ import android.webkit.WebChromeClient;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends Activity {
 
     private WebView webView;
 
@@ -20,6 +21,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         webView = (WebView) findViewById(R.id.webView);
+
         webView.getSettings().setJavaScriptEnabled(true);
         webView.getSettings().setDomStorageEnabled(true);
         webView.setWebChromeClient(new WebChromeClient());
@@ -38,6 +40,6 @@ public class MainActivity extends AppCompatActivity {
         });
 
         webView.getSettings().setJavaScriptEnabled(true);
-        webView.loadUrl(getResources().getString(R.string.url));
+        webView.loadUrl(getResources().getString(R.string.url) + "?androidWebview=true");
     }
 }
