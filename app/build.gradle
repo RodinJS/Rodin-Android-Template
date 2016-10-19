@@ -25,6 +25,7 @@ android {
     signingConfigs {
         release {
             storeFile file("$RodinReleaseStoreFile")
+            print RodinReleaseStoreFile
             storePassword RodinReleaseStorePassword
             keyAlias RodinReleaseStoreKeyAlias
             keyPassword RodinReleaseStoreKeyPassword
