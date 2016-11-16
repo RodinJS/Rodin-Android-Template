@@ -1,7 +1,7 @@
 apply plugin: 'com.android.application'
 
 String RodinAppName = project.hasProperty('RName') ? project.getProperty('RName') : 'Rodin Test'
-String RodinAppURL = project.hasProperty('RURL') ? project.getProperty('RURL') : 'https://google.com'
+String RodinAppURL = project.hasProperty('RURL') ? project.getProperty('RURL') : 'http://pahoc.com'
 String RodinAppVersionName = project.hasProperty('RVersionName') ? project.getProperty('RVersionName') : '1'
 int RodinAppVersionCode = project.hasProperty('RVersionCode') ? project.getProperty('RVersionCode').toInteger() : 1
 String RodinAppApplicationID = project.hasProperty('RApplicationID') ? project.getProperty('RApplicationID') : 'com.rodinapp.test'
