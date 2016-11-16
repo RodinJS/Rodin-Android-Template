@@ -10,6 +10,8 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.webkit.WebChromeClient;
+import android.webkit.WebResourceError;
+import android.webkit.WebResourceRequest;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
@@ -30,7 +32,34 @@ public class MainActivity extends Activity {
         webView.getSettings().setDomStorageEnabled(true);
         webView.setWebChromeClient(new WebChromeClient());
 
-        webView.setWebViewClient(new WebViewClient());
+        webView.setWebViewClient(new WebViewClient(){
+            @SuppressWarnings("deprecation")
+
+            public void onReceivedError(WebView view, int errorCode, String description, String failingUrl) {
+                //todo differentiate into error types (no connection...)
+
+                switch (errorCode)
+                {
+                    case ERROR_AUTHENTICATION:
+                    case ERROR_BAD_URL:
+                    case ERROR_CONNECT:
+                    case ERROR_FAILED_SSL_HANDSHAKE:
+                    case ERROR_FILE:
+                    case ERROR_FILE_NOT_FOUND:
+                    case ERROR_HOST_LOOKUP:
+                        webView.loadUrl("file:///android_asset/404.html");
+                        break;
+                    default:
+                        //do stuff
+                }
+            }
+
+            @TargetApi(Build.VERSION_CODES.M)
+            @Override
+            public void onReceivedError(WebView view, WebResourceRequest req, WebResourceError rerr) {
+                onReceivedError(view, rerr.getErrorCode(), rerr.getDescription().toString(), req.getUrl().toString());
+            }
+        });
 
         webView.getSettings().setJavaScriptEnabled(true);
 
